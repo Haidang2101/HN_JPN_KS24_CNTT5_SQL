@@ -4,33 +4,33 @@ CREATE DATABASE ecommerce_db;
 USE ecommerce_db;
 
 CREATE TABLE customers (
-    customer_id   INT PRIMARY KEY,        -- Mã khách hàng
-    customer_name VARCHAR(100),            -- Tên khách hàng
-    email         VARCHAR(100),            -- Email
-    city          VARCHAR(50)               -- Thành phố
+    customer_id   INT PRIMARY KEY,        
+    customer_name VARCHAR(100),           
+    email         VARCHAR(100),            
+    city          VARCHAR(50)             
 );
 
 CREATE TABLE products (
-    product_id   INT PRIMARY KEY,          -- Mã sản phẩm
-    product_name VARCHAR(100),              -- Tên sản phẩm
-    price        DECIMAL(12,2),              -- Giá bán
-    category     VARCHAR(50)                -- Loại sản phẩm
+    product_id   INT PRIMARY KEY,        
+    product_name VARCHAR(100),             
+    price        DECIMAL(12,2),            
+    category     VARCHAR(50)                
 );
 
 CREATE TABLE orders (
-    order_id    INT PRIMARY KEY,            -- Mã đơn hàng
-    customer_id INT,                        -- Khách hàng đặt
-    order_date  DATE,                       -- Ngày đặt hàng
-    status      VARCHAR(30),                -- Trạng thái đơn
+    order_id    INT PRIMARY KEY,           
+    customer_id INT,                        
+    order_date  DATE,                       
+    status      VARCHAR(30),                
     FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
 );
 
 CREATE TABLE order_items (
-    order_item_id INT PRIMARY KEY,          -- Mã chi tiết đơn
-    order_id      INT,                      -- Mã đơn hàng
-    product_id    INT,                      -- Mã sản phẩm
-    quantity      INT,                      -- Số lượng
-    unit_price    DECIMAL(12,2),             -- Giá bán tại thời điểm đặt
+    order_item_id INT PRIMARY KEY,          
+    order_id      INT,                      
+    product_id    INT,                      
+    quantity      INT,                      
+    unit_price    DECIMAL(12,2),            
     FOREIGN KEY (order_id) REFERENCES orders(order_id),
     FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
@@ -42,22 +42,12 @@ INSERT INTO customers VALUES
 (4, 'Pham Thi Dao',   'dao@gmail.com',  'Ha Noi'),
 (5, 'Hoang Van Em',   'em@gmail.com',   'Can Tho');
 
-
-/* =========================================================
-   7. DỮ LIỆU MẪU - SẢN PHẨM
-   ========================================================= */
-
 INSERT INTO products VALUES
 (1, 'Laptop Dell',          20000000, 'Electronics'),
 (2, 'iPhone 15',            25000000, 'Electronics'),
 (3, 'Tai nghe Bluetooth',    1500000, 'Accessories'),
 (4, 'Chuột không dây',        500000, 'Accessories'),
 (5, 'Bàn phím cơ',           2000000, 'Accessories');
-
-
-/* =========================================================
-   8. DỮ LIỆU MẪU - ĐƠN HÀNG
-   ========================================================= */
 
 INSERT INTO orders VALUES
 (101, 1, '2025-01-05', 'Completed'),
@@ -68,11 +58,6 @@ INSERT INTO orders VALUES
 (106, 5, '2025-01-10', 'Completed'),
 (107, 2, '2025-01-11', 'Completed'),
 (108, 3, '2025-01-12', 'Completed');
-
-
-/* =========================================================
-   9. DỮ LIỆU MẪU - CHI TIẾT ĐƠN HÀNG
-   ========================================================= */
 
 INSERT INTO order_items VALUES
 -- Đơn 101
